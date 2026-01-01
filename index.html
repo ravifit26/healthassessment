@@ -30,11 +30,11 @@
     .p3-logo { 
         font-family: 'Montserrat', sans-serif; 
         font-weight: 800; 
-        font-size: 38px; /* Reduced by 5% */
+        font-size: 38px; 
         letter-spacing: -1px; 
         line-height: 1;
         margin-right: 8px;
-        transform: translateY(1px); /* Micro-adjustment for visual center */
+        transform: translateY(1px); 
     }
     
     .framework-text {
@@ -52,9 +52,12 @@
     .progress-bar { height: 100%; background: linear-gradient(90deg, #9c27b0, var(--primary)); width: 25%; transition: width 0.6s ease; }
     
     .section-indicator{font-size:11px; color:var(--primary); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;}
-    .section-heading{font-family: 'Playfair Display', serif; font-size:26px; font-weight:700; color: var(--primary); margin-bottom:12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;}
     
-    /* First Page Tighter Spacing (Reduced another 5%) */
+    /* Section Heading Styles */
+    .section-heading{font-family: 'Playfair Display', serif; font-size:24px; font-weight:700; color: var(--primary); margin-bottom:12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px;}
+    .heading-p3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 22px; margin-right: 2px; }
+
+    /* First Page Tighter Spacing */
     #section1 .question { margin-bottom: 2px; padding: 4px 10px; }
     #section1 .question p { font-size: 13.5px; margin-bottom: 2px; }
 
@@ -83,7 +86,8 @@
     .thank-you-note { text-align: center; margin-bottom: 20px; background: #f1f8e9; padding: 20px; border-radius: 15px; }
     .thank-you-note h2 { color: var(--secondary); margin: 0 0 10px 0; font-family: 'Playfair Display', serif; }
     .score-card { background: #fff; border: 1px solid #eef2f7; border-radius: 12px; padding: 15px 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
-    .score-label { font-weight: 700; font-size: 16px; }
+    .score-label { font-weight: 700; font-size: 15px; }
+    .score-label .score-p3 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 14px; }
     .total-box { background: linear-gradient(45deg, var(--primary), #4527a0); color: white; padding: 25px; border-radius: 15px; text-align: center; margin-top: 15px; }
     .benchmark-container { background: #fffde7; border: 1px solid #fff59d; padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 14px; line-height: 1.6; text-align: left;}
     .error-msg{color: #d32f2f; font-size: 13px; font-weight: 700; margin-top: 8px; text-align: center;}
@@ -137,7 +141,7 @@
 
     <div id="section2" style="display:none">
       <span class="section-indicator">Step 2 of 4</span>
-      <h2 class="section-heading">Priority</h2>
+      <h2 class="section-heading"><span class="heading-p3">P3:</span> Framework - Priority</h2>
       <div id="q-container-s2"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(2)">Back</button>
@@ -147,7 +151,7 @@
 
     <div id="section3" style="display:none">
       <span class="section-indicator">Step 3 of 4</span>
-      <h2 class="section-heading">Purpose</h2>
+      <h2 class="section-heading"><span class="heading-p3">P3:</span> Framework - Purpose</h2>
       <div id="q-container-s3"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(3)">Back</button>
@@ -157,7 +161,7 @@
 
     <div id="section4" style="display:none">
       <span class="section-indicator">Step 4 of 4</span>
-      <h2 class="section-heading">Performance</h2>
+      <h2 class="section-heading"><span class="heading-p3">P3:</span> Framework - Performance</h2>
       <div id="q-container-s4"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(4)">Back</button>
@@ -223,7 +227,6 @@ function submitFinal(){
   const s2=calc("Priority"), s3=calc("Purpose"), s4=calc("Performance"), total=s2+s3+s4;
   const userName = document.getElementById("name").value;
 
-  // Replace URL with your actual Google Apps Script URL
   fetch("https://script.google.com/macros/s/AKfycbxzrVxA5YVj-pqEiaxKzax1t37CpHHMIrvFoOuf72Hu7FGNsMb9kiWa4EiNdnHnRJUlaA/exec", {
     method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ fullName: userName, age: document.getElementById("age").value, gender: document.getElementById("gender").value, profession: document.getElementById("profession").value, email: document.getElementById("email").value, mobile: document.getElementById("mobile").value, city: document.getElementById("city").value, coach: document.getElementById("coach").value, section2: s2, section3: s3, section4: s4, totalScore: total })
@@ -237,9 +240,20 @@ function submitFinal(){
         <h2>Assessment Complete!</h2>
         <p>Thank you so much, <strong>${userName}</strong>, for taking the time to complete this assessment. Your scores reflect your current alignment across our P3 framework.</p>
     </div>
-    <div class="score-card"><span class="score-label" style="color:var(--priority-q)">🎯 Priority Score</span><span class="score-value">${s2} / 60</span></div>
-    <div class="score-card"><span class="score-label" style="color:var(--purpose-q)">🧠 Purpose Score</span><span class="score-value">${s3} / 60</span></div>
-    <div class="score-card"><span class="score-label" style="color:var(--performance-q)">⚡ Performance Score</span><span class="score-value">${s4} / 60</span></div>
+    
+    <div class="score-card">
+        <span class="score-label" style="color:var(--priority-q)"><span class="score-p3">P3</span> Framework-Priority-Score:</span>
+        <span class="score-value">${s2} / 60</span>
+    </div>
+    <div class="score-card">
+        <span class="score-label" style="color:var(--purpose-q)"><span class="score-p3">P3</span> Framework-Purpose-Score:</span>
+        <span class="score-value">${s3} / 60</span>
+    </div>
+    <div class="score-card">
+        <span class="score-label" style="color:var(--performance-q)"><span class="score-p3">P3</span> Framework-Performance-Score:</span>
+        <span class="score-value">${s4} / 60</span>
+    </div>
+
     <div class="total-box">
       <h3 style="margin:0; font-size:14px; opacity:0.8; letter-spacing:1px;">YOUR OVERALL P3 INDEX</h3>
       <div style="font-size:52px; font-weight:800; margin:5px 0;">${total} <span style="font-size:20px; font-weight:400; opacity:0.7;">/ 180</span></div>
