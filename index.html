@@ -85,9 +85,12 @@ function submitFinal(){
   const s2=calc("Priority"), s3=calc("Purpose"), s4=calc("Performance"), total=s2+s3+s4;
   const userName = document.getElementById("name").value;
 
-  fetch("https://script.google.com/macros/s/AKfycbwT3_6wmU6BeEXM57N1R1GZXwDt01zSHK6ZZrR_23avKODeZyjr55AqYF-VVcp1LbIfkg/exec", {
+ fetch("https://script.google.com/macros/s/AKfycbxzrVxA5YVj-pqEiaxKzax1t37CpHHMIrvFoOuf72Hu7FGNsMb9kiWa4EiNdnHnRJUlaA/exec", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
   body: JSON.stringify({
     fullName: document.getElementById("name").value,
     age: document.getElementById("age").value,
@@ -96,13 +99,13 @@ function submitFinal(){
     profession: document.getElementById("profession").value,
     email: document.getElementById("email").value,
     mobile: document.getElementById("mobile").value,
-
     section2: s2,
     section3: s3,
     section4: s4,
     totalScore: total
   })
-})
+});
+
 .then(() => console.log("Saved to Google Sheet"))
 .catch(err => console.error(err));
 
