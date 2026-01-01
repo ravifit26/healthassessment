@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>P3 Framework Assessment</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
     :root {
         --primary: #673ab7;
@@ -16,11 +16,14 @@
     body{font-family:'Montserrat', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); margin:0; padding:15px 0; color: var(--text);}
     .form-container{background:#ffffff; max-width:820px; margin:0 auto; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.1); overflow:hidden;}
     
-    .form-header{background: var(--primary); padding:30px 20px; text-align:center; color: #ffffff;}
-    .header-title{font-family: 'Playfair Display', serif; font-size:40px; font-weight:800; margin:0; letter-spacing: 1px;}
-    .header-subtitle{font-size:18px; font-weight: 500; opacity:0.95; margin-top:5px; letter-spacing: 1px;}
+    .form-header{background: var(--primary); padding:25px 20px; text-align:center; color: #ffffff;}
+    
+    /* P3 Specific Styling - Side by Side Fix */
+    .p3-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; letter-spacing: -2px; display: inline-block; }
+    .header-title{font-family: 'Playfair Display', serif; font-size:40px; font-weight:800; margin:0; line-height: 1;}
+    .header-subtitle{font-size:17px; font-weight: 500; opacity:0.95; margin-top:8px; letter-spacing: 1px;}
 
-    .content-padding { padding: 15px 40px 40px; }
+    .content-padding { padding: 10px 40px 35px; }
     .progress-wrapper { padding: 15px 40px 0; }
     .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; overflow: hidden; }
     .progress-bar { height: 100%; background: linear-gradient(90deg, #9c27b0, var(--primary)); width: 25%; transition: width 0.6s ease; }
@@ -28,7 +31,11 @@
     .section-indicator{font-size:11px; color:var(--primary); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;}
     .section-heading{font-family: 'Playfair Display', serif; font-size:26px; font-weight:700; color: var(--primary); margin-bottom:12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;}
     
-    /* Optimized Spacing */
+    /* 10% Spacing Reduction for First Page Questions */
+    #section1 .question { margin-bottom: 4px; padding: 4px 10px; }
+    #section1 .question p { font-size: 13.5px; margin-bottom: 3px; }
+
+    /* Assessment Page Spacing */
     .question{margin-bottom:6px; padding:6px 12px; border-radius:10px;}
     .question p{font-size:14px; margin-bottom:4px; font-weight: 600; line-height: 1.3;}
     
@@ -42,7 +49,7 @@
     input, select{width:100%; padding:8px 12px; font-size:14px; border-radius:8px; border:1px solid #d1d9e6; outline: none; box-sizing: border-box; font-family: 'Montserrat', sans-serif;}
     input:focus, select:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 8px rgba(103, 58, 183, 0.1); }
     
-    .btn-group { margin-top: 20px; display: flex; gap: 12px; }
+    .btn-group { margin-top: 15px; display: flex; gap: 12px; }
     button{ flex:1; padding:14px; font-size:15px; cursor:pointer; font-weight:700; border-radius:10px; border:none; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;}
     button:hover { filter: brightness(1.1); transform: translateY(-2px); }
     
@@ -52,14 +59,13 @@
     .thank-you-note { text-align: center; margin-bottom: 20px; background: #f1f8e9; padding: 20px; border-radius: 15px; }
     .score-card { background: #fff; border: 1px solid #eef2f7; border-radius: 12px; padding: 15px 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
     .total-box { background: linear-gradient(45deg, var(--primary), #4527a0); color: white; padding: 25px; border-radius: 15px; text-align: center; margin-top: 15px; }
-    .error-msg{color: #d32f2f; font-size: 13px; font-weight: 700; margin-top: 8px; text-align: center;}
 </style>
 </head>
 <body>
 
 <div class="form-container">
   <div class="form-header">
-    <h1 class="header-title">P3: Framework</h1>
+    <h1 class="header-title"><span class="p3-logo">P3</span>: Framework</h1>
     <div class="header-subtitle">Priority : Purpose : Performance</div>
   </div>
 
@@ -71,7 +77,7 @@
     <div id="section1">
       <span class="section-indicator">Step 1 of 4: Profile</span>
       <h2 class="section-heading">Basic Information</h2>
-      <div class="question"><p>Full Name*</p><input id="name" placeholder="John Doe" required></div>
+      <div class="question"><p>Full Name*</p><input id="name" placeholder="Name" required></div>
       <div class="question"><p>Age*</p><input id="age" type="number" required></div>
       <div class="question"><p>Profession*</p><input id="profession" required></div>
       <div class="question"><p>Email Address*</p><input id="email" type="email" required></div>
@@ -86,12 +92,12 @@
         <p>Worked with health coach earlier?*</p>
         <select id="coach" required><option value="">Select Option</option><option>Yes</option><option>No</option></select>
       </div>
-      <button type="button" class="btn-next" style="width:100%; margin-top:10px;" onclick="nextStep(1)">Begin Assessment</button>
+      <button type="button" class="btn-next" style="width:100%; margin-top:5px;" onclick="nextStep(1)">Begin Assessment</button>
     </div>
 
     <div id="section2" style="display:none">
       <span class="section-indicator">Step 2 of 4</span>
-      <h2 class="section-heading">P3: Framework - Priority</h2>
+      <h2 class="section-heading"><span class="p3-logo">P3</span>: Framework - Priority</h2>
       <div id="q-container-s2"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(2)">Back</button>
@@ -101,7 +107,7 @@
 
     <div id="section3" style="display:none">
       <span class="section-indicator">Step 3 of 4</span>
-      <h2 class="section-heading">P3: Framework - Purpose</h2>
+      <h2 class="section-heading"><span class="p3-logo">P3</span>: Framework - Purpose</h2>
       <div id="q-container-s3"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(3)">Back</button>
@@ -111,7 +117,7 @@
 
     <div id="section4" style="display:none">
       <span class="section-indicator">Step 4 of 4</span>
-      <h2 class="section-heading">P3: Framework - Performance</h2>
+      <h2 class="section-heading"><span class="p3-logo">P3</span>: Framework - Performance</h2>
       <div id="q-container-s4"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(4)">Back</button>
@@ -188,7 +194,7 @@ function submitFinal(){
   document.getElementById("final").innerHTML = `
     <div class="thank-you-note">
         <h2 style="font-family:'Playfair Display';">Assessment Complete!</h2>
-        <p>Thank you, <strong>${userName}</strong>. Your P3 Profile is ready.</p>
+        <p>Thank you, <strong>${userName}</strong>.</p>
     </div>
     <div class="score-card"><span style="color:var(--priority-q); font-weight:700;">🎯 Priority</span><span>${s2} / 60</span></div>
     <div class="score-card"><span style="color:var(--purpose-q); font-weight:700;">🧠 Purpose</span><span>${s3} / 60</span></div>
@@ -196,7 +202,7 @@ function submitFinal(){
     <div class="total-box">
       <div style="font-size:52px; font-weight:800;">${total} <small style="font-size:20px; font-weight:400; opacity:0.8;">/ 180</small></div>
     </div>
-    <button type="button" class="btn-next" style="margin-top:20px; width:100%;" onclick="window.print()">Download PDF Results</button>
+    <button type="button" class="btn-next" style="margin-top:20px; width:100%;" onclick="window.print()">Download Results PDF</button>
   `;
   window.scrollTo(0,0);
 }
@@ -214,7 +220,7 @@ function showErr(id){
   const s = document.getElementById(id);
   if(!s.querySelector(".error-msg")){
     const d = document.createElement("div"); d.className="error-msg"; 
-    d.innerText="⚠️ Please answer all questions to proceed."; 
+    d.innerText="⚠️ Please fill required fields."; 
     s.appendChild(d);
     setTimeout(() => d.remove(), 4000);
   }
