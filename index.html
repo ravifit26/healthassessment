@@ -2,61 +2,77 @@
 <html>
 <head>
 <title>P3 Health & Lifestyle Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
     :root {
         --primary: #673ab7;
         --secondary: #00c853; 
         --bg: #f4f7f9;
-        --text: #37474f;
+        --text: #2c3e50;
+        --priority-q: #00897b; /* Teal */
+        --purpose-q: #43a047;  /* Green */
+        --performance-q: #3949ab; /* Indigo */
     }
 
-    body{font-family:'Segoe UI',Roboto,Arial,sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); margin:0; padding:15px 0; color: var(--text);}
-    .form-container{background:#ffffff; max-width:820px; margin:0 auto; border-radius:15px; box-shadow:0 10px 25px rgba(0,0,0,0.1); overflow:hidden;}
+    body{font-family:'Montserrat', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); margin:0; padding:15px 0; color: var(--text);}
+    .form-container{background:#ffffff; max-width:820px; margin:0 auto; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.1); overflow:hidden;}
     
     .form-header{background: var(--primary); padding:30px 20px; text-align:center; color: #ffffff;}
-    .header-title{font-size:32px; font-weight:700; margin:0; letter-spacing: 1.5px;}
-    .header-subtitle{font-size:20px; font-weight: 500; opacity:0.95; margin-top:5px;}
+    .header-title{font-size:34px; font-weight:700; margin:0; letter-spacing: 2px; text-transform: uppercase;}
+    .header-subtitle{font-size:20px; font-weight: 500; opacity:0.9; margin-top:5px; border-top: 1px solid rgba(255,255,255,0.3); display: inline-block; padding-top: 5px;}
 
     .content-padding { padding: 15px 40px 40px; }
 
     .progress-wrapper { padding: 15px 40px 0; }
-    .progress-container { width: 100%; background: #eee; height: 6px; border-radius: 3px; overflow: hidden; }
-    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), #9c27b0); width: 25%; transition: width 0.5s ease; }
+    .progress-container { width: 100%; background: #eee; height: 8px; border-radius: 4px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #9c27b0, var(--primary)); width: 25%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
     
     .section-indicator{font-size:11px; color:var(--primary); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;}
-    .section-heading{font-size:22px; font-weight:700; color: var(--primary); margin-bottom:12px; border-bottom: 2px solid #eee; padding-bottom: 5px;}
+    .section-heading{font-size:24px; font-weight:700; color: var(--primary); margin-bottom:12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;}
     
-    /* Reduced Question Spacing */
-    .question{margin-bottom:8px; padding:5px 10px;}
-    .question p{font-size:14px; margin-bottom:4px; font-weight: 500;}
+    /* Compact Question Spacing & Colors */
+    .question{margin-bottom:8px; padding:6px 12px; border-radius:10px; border-left: 4px solid transparent;}
+    .question p{font-size:14.5px; margin-bottom:5px; font-weight: 600; line-height: 1.4;}
     
-    input, select{width:100%; padding:8px 10px; font-size:14px; border-radius:6px; border:1px solid #ced4da; outline: none; box-sizing: border-box;}
-    input:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(103, 58, 183, 0.1); }
+    /* Specific Section Coloring */
+    #section2 .question p { color: var(--priority-q); }
+    #section2 .question { background: #e0f2f1; }
     
-    .btn-group { margin-top: 15px; display: flex; gap: 12px; }
-    button{ flex:1; padding:12px; font-size:15px; cursor:pointer; font-weight:600; border-radius:8px; border:none; transition: all 0.2s;}
-    button:active { transform: scale(0.98); }
+    #section3 .question p { color: var(--purpose-q); }
+    #section3 .question { background: #e8f5e9; }
     
-    .btn-next { background: var(--primary); color: #fff; }
-    .btn-next:hover { background: #5e35b1; }
-    .btn-prev { background: #f0f0f0; color: #616161; }
+    #section4 .question p { color: var(--performance-q); }
+    #section4 .question { background: #e8eaf6; }
+
+    input, select{width:100%; padding:9px 12px; font-size:14px; border-radius:8px; border:1px solid #d1d9e6; outline: none; box-sizing: border-box; font-family: 'Montserrat', sans-serif;}
+    input:focus, select:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 8px rgba(103, 58, 183, 0.2); }
     
-    .thank-you-note { text-align: center; margin-bottom: 20px; }
-    .thank-you-note h2 { color: var(--secondary); font-size: 26px; }
-    .score-card { background: #fff; border: 1px solid #eef2f7; border-radius: 12px; padding: 12px 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .score-label { font-weight: 600; font-size: 16px; }
-    .score-value { font-weight: 700; color: var(--primary); font-size: 18px; }
+    .btn-group { margin-top: 20px; display: flex; gap: 12px; }
+    button{ flex:1; padding:14px; font-size:15px; cursor:pointer; font-weight:700; border-radius:10px; border:none; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;}
+    button:hover { filter: brightness(1.1); transform: translateY(-2px); }
+    button:active { transform: translateY(0); }
     
-    .total-box { background: linear-gradient(45deg, var(--primary), #9c27b0); color: white; padding: 20px; border-radius: 12px; text-align: center; margin-top: 15px; }
-    .benchmark-container { background: #fff8e1; border: 1px solid #ffe082; padding: 15px; border-radius: 12px; margin-top: 15px; font-size: 14px; }
-    .error-msg{color: #d32f2f; font-size: 13px; font-weight: 600; margin-top: 5px; text-align: center;}
+    .btn-next { background: var(--primary); color: #fff; box-shadow: 0 4px 15px rgba(103, 58, 183, 0.3); }
+    .btn-prev { background: #eceff1; color: #546e7a; }
+    
+    /* Results Styling */
+    .thank-you-note { text-align: center; margin-bottom: 20px; background: #f1f8e9; padding: 20px; border-radius: 15px; }
+    .thank-you-note h2 { color: var(--secondary); margin: 0 0 10px 0; }
+    .score-card { background: #fff; border: 1px solid #eef2f7; border-radius: 12px; padding: 15px 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+    .score-label { font-weight: 700; font-size: 16px; }
+    
+    .total-box { background: linear-gradient(45deg, var(--primary), #4527a0); color: white; padding: 25px; border-radius: 15px; text-align: center; margin-top: 15px; }
+    .benchmark-container { background: #fffde7; border: 1px solid #fff59d; padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 14px; line-height: 1.6; }
+    .error-msg{color: #d32f2f; font-size: 13px; font-weight: 700; margin-top: 8px; text-align: center; animation: shake 0.3s;}
+    
+    @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-5px);} 75% {transform: translateX(5px);} }
 </style>
 </head>
 <body>
 
 <div class="form-container">
   <div class="form-header">
-    <h1 class="header-title">P3 ASSESSMENT</h1>
+    <h1 class="header-title">P3 Assessment</h1>
     <div class="header-subtitle">Priority • Purpose • Performance</div>
   </div>
 
@@ -64,24 +80,24 @@
     <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
   </div>
 
-  <form id="mainForm" class="content-padding">
+  <form id="mainForm" class="content-padding" autocomplete="off">
     <div id="section1">
       <span class="section-indicator">Step 1 of 4: Profile</span>
       <h2 class="section-heading">Basic Information</h2>
-      <div class="question"><p>Full Name*</p><input id="name" placeholder="Enter Full Name" required></div>
-      <div class="question"><p>Age*</p><input id="age" type="number" placeholder="Enter Age" required></div>
-      <div class="question"><p>Profession*</p><input id="profession" placeholder="Your Occupation" required></div>
+      <div class="question"><p>Full Name*</p><input id="name" placeholder="John Doe" required></div>
+      <div class="question"><p>Age*</p><input id="age" type="number" placeholder="Enter your age" required></div>
+      <div class="question"><p>Profession*</p><input id="profession" placeholder="e.g. Entrepreneur, Engineer" required></div>
       <div class="question"><p>Email Address*</p><input id="email" type="email" placeholder="email@example.com" required></div>
-      <div class="question"><p>Mobile Number*</p><input id="mobile" placeholder="Phone Number" required></div>
+      <div class="question"><p>Mobile Number*</p><input id="mobile" placeholder="+XX XXXXX XXXXX" required></div>
       <div class="question"><p>City / Country*</p><input id="city" placeholder="City, Country" required></div>
       <div class="question">
         <p>Medical Conditions?*</p>
-        <select id="medical" onchange="toggleMedical()" required><option value="">Select</option><option>No</option><option>Yes</option></select>
+        <select id="medical" onchange="toggleMedical()" required><option value="">Select Option</option><option>No</option><option>Yes</option></select>
       </div>
       <div id="medical_desc" style="display:none" class="question"><p>Medical Details</p><input id="medical_details"></div>
       <div class="question">
         <p>Worked with health coach earlier?*</p>
-        <select id="coach" required><option value="">Select</option><option>Yes</option><option>No</option></select>
+        <select id="coach" required><option value="">Select Option</option><option>Yes</option><option>No</option></select>
       </div>
       
       <button type="button" class="btn-next" style="width:100%; margin-top:10px;" onclick="nextStep(1)">Begin Assessment</button>
@@ -113,7 +129,7 @@
       <div id="q-container-s4"></div>
       <div class="btn-group">
           <button type="button" class="btn-prev" onclick="prevStep(4)">Back</button>
-          <button type="button" class="btn-next" style="background:var(--secondary)" onclick="submitFinal()">Finish & View Results</button>
+          <button type="button" class="btn-next" style="background:var(--secondary); box-shadow: 0 4px 15px rgba(0,200,83,0.3);" onclick="submitFinal()">Submit Results</button>
       </div>
     </div>
 
@@ -126,8 +142,13 @@ const q2 = ["I consciously prioritise my health in daily decision-making.", "My 
 const q3 = ["I clearly understand why staying healthy matters to my life.", "My health goals are connected to a deeper life purpose.", "I understand the basics of nutrition, sleep, and lifestyle health.", "I am aware of my current physical and mental health condition.", "I regularly reflect on where my life is heading.", "My goals are realistic for my age and responsibilities.", "My motivation comes from within, not external pressure.", "I can clearly articulate my long-term life vision.", "I am aware of habits that support or damage my wellbeing.", "I actively seek knowledge related to health and lifestyle.", "I feel mentally aligned with the direction of my life.", "My aspirations are meaningful, not socially driven."];
 const q4 = ["I maintain a regular and sufficient sleep routine.", "I engage in physical activity suitable for my age and capacity.", "My food choices are mostly intentional rather than impulsive.", "I remain consistent even when motivation is low.", "I recover adequately after physical or mental exertion.", "I manage stress without unhealthy coping mechanisms.", "I track or review basic health indicators.", "I avoid extreme or unsustainable health practices.", "I adapt my lifestyle when my body signals discomfort.", "I can sustain my routines during busy or stressful periods.", "I feel physically capable of daily activities without fatigue.", "I make healthy decisions even during stressful or emotionally difficult periods."];
 
-// No numbers in options
-const opts = `<option value="">Select Option</option><option value="1">Never / Strongly Disagree</option><option value="2">Rarely / Disagree</option><option value="3">Sometimes / Neutral</option><option value="4">Often / Agree</option><option value="5">Always / Strongly Agree</option>`;
+// No numbers in answer text
+const opts = `<option value="">Select Response</option>
+              <option value="1">Never / Strongly Disagree</option>
+              <option value="2">Rarely / Disagree</option>
+              <option value="3">Sometimes / Neutral</option>
+              <option value="4">Often / Agree</option>
+              <option value="5">Always / Strongly Agree</option>`;
 
 function populate(id, qs, prefix) {
     const c = document.getElementById(id);
@@ -171,19 +192,16 @@ function submitFinal(){
   const s2=calc("Priority"), s3=calc("Purpose"), s4=calc("Performance"), total=s2+s3+s4;
   const userName = document.getElementById("name").value;
 
+  // Final API Push
   fetch("https://script.google.com/macros/s/AKfycbxzrVxA5YVj-pqEiaxKzax1t37CpHHMIrvFoOuf72Hu7FGNsMb9kiWa4EiNdnHnRJUlaA/exec", {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      fullName: userName,
-      age: document.getElementById("age").value,
-      profession: document.getElementById("profession").value,
-      email: document.getElementById("email").value,
-      mobile: document.getElementById("mobile").value,
-      city: document.getElementById("city").value,
-      coach: document.getElementById("coach").value,
-      section2: s2, section3: s3, section4: s4, totalScore: total
+      fullName: userName, age: document.getElementById("age").value,
+      profession: document.getElementById("profession").value, email: document.getElementById("email").value,
+      mobile: document.getElementById("mobile").value, city: document.getElementById("city").value,
+      coach: document.getElementById("coach").value, section2: s2, section3: s3, section4: s4, totalScore: total
     })
   });
 
@@ -192,26 +210,27 @@ function submitFinal(){
   
   document.getElementById("final").innerHTML = `
     <div class="thank-you-note">
-        <h2>Wellness Journey Started!</h2>
-        <p>Thank you so much, <strong>${userName}</strong>, for taking the time to complete this assessment. Your scores reflect your current alignment across our P3 framework.</p>
+        <h2>Assessment Complete!</h2>
+        <p>Thank you, <strong>${userName}</strong>! You've successfully completed the P3 framework evaluation. Here is your current health and lifestyle profile.</p>
     </div>
 
-    <div class="score-card"><span class="score-label">🎯 Priority Score</span><span class="score-value">${s2} / 60</span></div>
-    <div class="score-card"><span class="score-label">🧠 Purpose Score</span><span class="score-value">${s3} / 60</span></div>
-    <div class="score-card"><span class="score-label">⚡ Performance Score</span><span class="score-value">${s4} / 60</span></div>
+    <div class="score-card"><span class="score-label" style="color:var(--priority-q)">🎯 Priority Score</span><span class="score-value">${s2} / 60</span></div>
+    <div class="score-card"><span class="score-label" style="color:var(--purpose-q)">🧠 Purpose Score</span><span class="score-value">${s3} / 60</span></div>
+    <div class="score-card"><span class="score-label" style="color:var(--performance-q)">⚡ Performance Score</span><span class="score-value">${s4} / 60</span></div>
 
     <div class="total-box">
-      <h3 style="margin:0; font-size:14px; opacity:0.9;">YOUR P3 INDEX</h3>
-      <div style="font-size:42px; font-weight:800; margin:5px 0;">${total} <span style="font-size:18px; font-weight:400;">/ 180</span></div>
+      <h3 style="margin:0; font-size:14px; opacity:0.8; letter-spacing:1px;">YOUR OVERALL P3 INDEX</h3>
+      <div style="font-size:52px; font-weight:800; margin:5px 0;">${total} <span style="font-size:20px; font-weight:400; opacity:0.7;">/ 180</span></div>
     </div>
 
     <div class="benchmark-container">
-      <p><strong>150-180:</strong> Stable & Aligned</p>
-      <p><strong>105-149:</strong> Moderate (Needs Refinement)</p>
-      <p><strong>36-104:</strong> Needs Guidance</p>
+      <strong>How to interpret your results:</strong><br>
+      • <strong>150 - 180:</strong> High Alignment. Your lifestyle supports your long-term vision.<br>
+      • <strong>105 - 149:</strong> Moderate Alignment. There is room for specific habit optimization.<br>
+      • <strong>36 - 104:</strong> Foundational Stage. Focus on "Priority" first to build momentum.
     </div>
     
-    <button type="button" class="btn-next" style="margin-top:20px; width:100%;" onclick="window.print()">Download Results (PDF)</button>
+    <button type="button" class="btn-next" style="margin-top:20px; width:100%;" onclick="window.print()">Download Results PDF</button>
   `;
   window.scrollTo(0,0);
 }
@@ -229,7 +248,7 @@ function showErr(id){
   const s = document.getElementById(id);
   if(!s.querySelector(".error-msg")){
     const d = document.createElement("div"); d.className="error-msg"; 
-    d.innerText="⚠️ Please fill out all required fields."; 
+    d.innerText="⚠️ Please answer all required questions."; 
     s.appendChild(d);
     setTimeout(() => d.remove(), 4000);
   }
