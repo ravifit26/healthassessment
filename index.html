@@ -23,7 +23,7 @@ button:hover{background:#5e35b1;}
 </head>
 <body>
 
-<form name="p3-assessment" method="POST" data-netlify="true" class="form-container" id="mainForm">
+<form class="form-container" id="mainForm">
   <input type="hidden" name="form-name" value="p3-assessment" />
   
   <div class="form-header">
@@ -85,19 +85,28 @@ function submitFinal(){
   const s2=calc("Priority"), s3=calc("Purpose"), s4=calc("Performance"), total=s2+s3+s4;
   const userName = document.getElementById("name").value;
 
-  const fd = new FormData(document.getElementById("mainForm"));
-  fd.append("Priority Total", s2);
-  fd.append("Purpose Total", s3);
-  fd.append("Performance Total", s4);
-  fd.append("Grand Total", total);
+  fetch("https://script.google.com/macros/s/AKfycbzLHMC69qlGgkwmlPfk65cGwtNfI4NYy6vDJeS9roBzQzfieXvQz_oQDNGYUEw4NNeQ6w/exec", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    fullName: document.getElementById("name").value,
+    age: document.getElementById("age").value,
+    gender: document.getElementById("gender").value,
+    city: document.getElementById("city").value,
+    profession: document.getElementById("profession").value,
+    email: document.getElementById("email").value,
+    mobile: document.getElementById("mobile").value,
 
-  fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(fd).toString(),
-  }).then(() => console.log("Success")).catch(e => console.error(e));
+    section2: s2,
+    section3: s3,
+    section4: s4,
+    totalScore: total
+  })
+})
+.then(() => console.log("Saved to Google Sheet"))
+.catch(err => console.error(err));
 
-  document.getElementById("section4").style.display="none";
+   document.getElementById("section4").style.display="none";
   document.getElementById("final").innerHTML = `
     <div class="score-box">
       <h2>Thank You, ${userName}!</h2>
