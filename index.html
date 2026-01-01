@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>P3 Framework Assessment</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
     :root {
         --primary: #673ab7;
@@ -18,8 +18,16 @@
     
     .form-header{background: var(--primary); padding:25px 20px; text-align:center; color: #ffffff;}
     
-    /* P3 Logo - Refined & Elegant (Not Fat) */
-    .p3-logo { font-family: 'Playfair Display', serif; font-weight: 600; letter-spacing: 1px; display: inline-block; vertical-align: baseline; }
+    /* P3 Logo - Side-by-Side Alignment Fix */
+    .p3-logo { 
+        font-family: 'Montserrat', sans-serif; 
+        font-weight: 800; 
+        letter-spacing: -1px; 
+        display: inline-flex; 
+        align-items: center; 
+        line-height: 1;
+        vertical-align: middle;
+    }
     
     .header-title{font-family: 'Playfair Display', serif; font-size:38px; font-weight:700; margin:0; line-height: 1;}
     .header-subtitle{font-size:17px; font-weight: 500; opacity:0.95; margin-top:8px; letter-spacing: 1px;}
@@ -32,7 +40,7 @@
     .section-indicator{font-size:11px; color:var(--primary); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;}
     .section-heading{font-family: 'Playfair Display', serif; font-size:26px; font-weight:700; color: var(--primary); margin-bottom:12px; border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;}
     
-    /* First Page (Profile) 10% Spacing Reduction */
+    /* First Page (Profile) Tighter Spacing */
     #section1 .question { margin-bottom: 4px; padding: 5px 10px; }
     #section1 .question p { font-size: 13.5px; margin-bottom: 3px; }
 
@@ -57,7 +65,7 @@
     .btn-next { background: var(--primary); color: #fff; box-shadow: 0 4px 15px rgba(103, 58, 183, 0.3); }
     .btn-prev { background: #eceff1; color: #546e7a; }
     
-    /* RESTORED: Last Page Results Styling */
+    /* Restored Last Page Styles */
     .thank-you-note { text-align: center; margin-bottom: 20px; background: #f1f8e9; padding: 20px; border-radius: 15px; }
     .thank-you-note h2 { color: var(--secondary); margin: 0 0 10px 0; font-family: 'Playfair Display', serif; }
     .score-card { background: #fff; border: 1px solid #eef2f7; border-radius: 12px; padding: 15px 20px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
@@ -197,7 +205,6 @@ function submitFinal(){
   document.getElementById("section4").style.display="none";
   document.querySelector(".progress-wrapper").style.display="none";
   
-  // RESTORED PREVIOUS LAST PAGE VERSION
   document.getElementById("final").innerHTML = `
     <div class="thank-you-note">
         <h2>Assessment Complete!</h2>
